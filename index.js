@@ -34,7 +34,10 @@ function checkGuess() {
   if (guess === targetNumber) {
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You made ${attempts} guesses`;
-
+    // Remove too high or too low messages
+    tooHighMessage.style.display = 'none';
+    tooLowMessage.style.display = 'none'; 
+    
     correctMessage.style.display = '';
 
     submitButton.disabled = true;
