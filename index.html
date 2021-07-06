@@ -15,7 +15,8 @@
         less?
       </p>
       <div>
-        <input type="number" id="guess" min="1" max="99" />
+        <!-- <input type="number" id="guess" min="1" max="99" /> per chase104  prevent users from typing numbers over 99-->
+        <input type="number" id="guess" min="1" max="99" onKeyPress="if(this.value.length==2) return false;"/>
         <button id="submit">Submit Guess</button>
       </div>
       <div>

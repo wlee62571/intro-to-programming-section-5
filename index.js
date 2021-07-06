@@ -45,20 +45,28 @@ function checkGuess() {
   }
 
   if (guess !== targetNumber) {
-    if (guess < targetNumber) {
-      tooLowMessage.style.display = '';
-      // revision
+    // per chase104: add some extra functionality
+    if (Number.isInteger(guess)) {
+      if (guess < targetNumber) {
+        tooLowMessage.style.display = '';
+        // revision
+        tooHighMessage.style.display = 'none';
+        //tooLowMessage.style.display = 'none'; show one message
+        // revision
+      } else {
+        // tooLowMessage.style.display = '';
+        tooHighMessage.style.display = '';
+        // revision
+        //tooHighMessage.style.display = 'none'; show one message
+        tooLowMessage.style.display = 'none'; 
+        // revision
+      } 
+    } else { // per chase104: if user submits without entering any info, do not +1 to attempts and display a message
+      attempts = attempts -1;
+      alert("Please enter a value before submitting");
       tooHighMessage.style.display = 'none';
-      //tooLowMessage.style.display = 'none'; show one message
-      // revision
-    } else {
-      // tooLowMessage.style.display = '';
-      tooHighMessage.style.display = '';
-      // revision
-      //tooHighMessage.style.display = 'none'; show one message
       tooLowMessage.style.display = 'none'; 
-      // revision
-    }
+    } 
 
     const remainingAttempts = maxNumberOfAttempts - attempts;
 
@@ -76,6 +84,20 @@ function checkGuess() {
   
   resetButton.style.display = '';
 }
+
+// per chase104:allow user to submit by pressing "Enter"
+// function checkKeypress(e){
+//   console.log(e.key === "Enter")
+//   if (e.key === "Enter") {
+//   checkGuess()
+//   }
+//   }
+const textbox = document.getElementById("guess");
+textbox.addEventListener("keypress", function checkKeypress(e) {
+  if (e.key === "Enter") {
+    document.getElementById("submit").click();
+  }
+});
 
 function hideAllMessages() {
   //for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) { not <=
